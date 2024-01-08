@@ -8,4 +8,6 @@ https://trello.com/b/ZtJCcwo7/wiki
 
 Lien de Presentation du projet:
 
+https://www.canva.com/design/DAF5UBezWVY/zoJXvHjr1956cKTBpuSLmQ/edit
+
 
