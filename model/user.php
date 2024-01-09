@@ -28,4 +28,11 @@ class user{
         $sql->bindParam(':password_user', $password_user);
         $sql->execute();
     }
+
+    public function login($name_user, $password_user){
+        $sql = DBconnection::connection()->prepare("SELECT * FROM users WHERE email_user = :email_user and password_user = :password_user");
+        $sql->bindParam(':email_user', $email_user);
+        $sql->bindParam('password_user', $password_user);
+        $sql->execute();
+    }
 }
