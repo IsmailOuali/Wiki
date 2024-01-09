@@ -14,6 +14,6 @@ class user{
         $this->name_user = $name_user;
         $this->email_user = $email_user;
         $this->password_user = $password_user;
-        $this->id_role = $id_role
+        $this->id_role = $id_role;
     }
 }
