@@ -3,7 +3,7 @@
 define ("dbhost", 'localhost');
 define("dbusr", 'root');
 define("dbpwd", 'root');
-define("db", 'QUIZZ');
+define("db", 'wiki');
 
 class DBconnection{
     public function __construct(){
