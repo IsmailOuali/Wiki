@@ -16,4 +16,13 @@ class user{
         $this->password_user = $password_user;
         $this->id_role = $id_role;
     }
+
+    public function __get($prop){
+        return $this->$prop;
+    }
+
+    public function __set($prop, $value){
+        $this->$prop = $value;
+    }
+    
 }
