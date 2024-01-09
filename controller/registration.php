@@ -1,17 +1,19 @@
 <?php
 
 session_start();
-require_once '../config.php';
+require_once '../model/user.php';
 
 if(!$_POST){
-    header('Location: index.php');
+    header('Location: ../index.php');
 }
 
 if(@$_POST['register']){
 
-    $nom = $_POST['nom'];
+    $nom = $_POST['name'];
     $email = $_POST['email'];
+
     $pwd = $_POST['password'];
+    $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 }
 
 $obj = new user();

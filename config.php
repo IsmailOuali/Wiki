@@ -13,7 +13,7 @@ class DBconnection{
     public static function connection(){
         try{
             $conn = new PDO("mysql:host=" . dbhost . ";dbname=" . db, dbusr, dbpwd);
-            $conn->setAttribute(PDO::ATTE_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo 'connected succesufully';
             return $conn;
         }
