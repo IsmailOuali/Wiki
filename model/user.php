@@ -25,4 +25,11 @@ class user{
         $this->$prop = $value;
     }
     
+    public static function adduser($name_user, $email_user, $password_user){
+        $sql = DBconnection::connection()->prepare("INSERT INTO users(id_user, name_user, email_user, password_user, id_role) VALUES (NULL, :name_user, :email_user, :password_user, 1)");
+        $sql->bindParam(':name_user', $name_user);
+        $sql->bindParam('email_user', $email_user);
+        $sql->bindParam(':password_user', $password_user);
+        $sql->execute();
+    }
 }

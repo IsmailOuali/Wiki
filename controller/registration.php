@@ -7,9 +7,17 @@ if(!$_POST){
     header('Location: index.php');
 }
 
-$nom = $_POST['nom'];
-$email = $_POST['email'];
-$pwd = $_POST['password'];
+if(@$_POST['register']){
+
+    $nom = $_POST['nom'];
+    $email = $_POST['email'];
+    $pwd = $_POST['password'];
+}
+
+$obj = new user();
+$obj->adduser($nom, $email, $pwd);
+
+
 
 header('Location: ../login.php');
 
