@@ -14,6 +14,7 @@ class DBconnection{
         try{
             $conn = new PDO("mysql:host=" . dbhost . ";dbname=" . db, dbusr, dbpwd);
             $conn->setAttribute(PDO::ATTE_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo 'connected succesufully';
             return $conn;
         }
         catch(PDOException $e){
