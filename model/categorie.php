@@ -23,7 +23,24 @@ class categorie{
         $sql->bindParam(':name_category', $name_category);
         $sql->execute();
     }
+
+    public function showcategory(){
+        $sql = DBconnection::connection()->query("SELECT name_category FROM categorie");
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $cat = array();
+        
+        foreach ($result as $row){
+            $quest = new categorie();
+            array_push($cat, $quest);
+
+        }
+        return  $cat;  
+    }  
 }
 
 // $obj = new categorie();
-// $obj->addcategory('dd');
+// $cat = $obj->showcategory();
+
+// foreach($cat as $row){
+//     echo $row->name_category;
+// }
