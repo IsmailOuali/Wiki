@@ -1,12 +1,16 @@
 <?php
 // session_start();
 require_once 'config.php';
+require_once 'model/categorie.php';
 require_once 'model/tag.php';
 
 
 $tags  =  new tag();
 
 $obj = $tags->showtag();
+
+
+$objcat = categorie::showcategory();
 
 
 ?>
@@ -106,7 +110,7 @@ $obj = $tags->showtag();
                            ?>
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           <?php 
+                           <?php
                               echo $row->__get('name_tag');
                               ?>
                         </th>

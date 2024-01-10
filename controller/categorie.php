@@ -2,7 +2,7 @@
 
 require_once '../model/categorie.php';
 
-if(isset($_POST['submit-categorie'])){
+if(@$_POST['submit-categorie']){
     $name =$_POST['category-name'];
 }
 

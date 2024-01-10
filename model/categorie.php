@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+// require_once '../config.php';
 
 class categorie{
     private $id_category;
@@ -24,23 +24,23 @@ class categorie{
         $sql->execute();
     }
 
-    public function showcategory(){
-        $sql = DBconnection::connection()->query("SELECT name_category FROM categorie");
+    public static function showcategory(){
+        $sql = DBconnection::connection()->query("SELECT * FROM categorie");
+        $sql->execute();
         $result = $sql->fetchAll(PDO::FETCH_ASSOC);
         $cat = array();
         
         foreach ($result as $row){
-            $quest = new categorie();
+            $quest = new categorie($row['id_category'], $row['name_category']);
             array_push($cat, $quest);
 
         }
-        return  $cat;  
+        return  $cat; 
     }  
 }
 
-// $obj = new categorie();
-// $cat = $obj->showcategory();
+// $cat = categorie::showcategory();
 
 // foreach($cat as $row){
-//     echo $row->name_category;
+//     echo $row->__get('name_category');
 // }
