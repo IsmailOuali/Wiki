@@ -23,4 +23,22 @@ class tag{
         $sql->bindParam(':name_tag', $name_tag);
         $sql->execute();
     }
+
+    public function showtag(){
+        $sql = DBconnection::connection()->query("SELECT name_tag FROM tags");
+        
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $tag = array();
+
+        foreach ($result as $row){
+            $tg = new tag();
+            array_push($tag, $tg);
+
+        }
+        return  $tag;
+    }
 }
+
+// $obj  = new tag();
+// $obj->addtag('op');
+// print_r($obj->showtag());

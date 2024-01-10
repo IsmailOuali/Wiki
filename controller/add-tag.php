@@ -10,4 +10,4 @@ $log = new tag();
 $result = $log->addtag($tagName);
 // echo $tagName;
 
-header('Location: ../dashboard-admin.html');
+header('Location: ../dashboard-admin.php');

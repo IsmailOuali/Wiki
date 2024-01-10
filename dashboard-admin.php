@@ -63,6 +63,9 @@
       </div>
    </aside>
    <main class="mx-60 max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+
+   <!-- Tags part -->
+
       <section id="tags-page">
          <div class=" rounded-sm">
             <form class="w-1/4 max-w-sm" action="controller/add-tag.php" method="post">
@@ -94,102 +97,15 @@
                            <a href="http://">Supprimer</a>
                         </td>
                      </tr>
-                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Microsoft Surface Pro
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </div>
             
          </div>
       </section>
+
+      <!-- Category Part -->
+
       <section class="pt-40" id="category-page">
          <div class=" rounded-sm">
             <form class="w-1/4 max-w-sm">
@@ -309,6 +225,9 @@
             
          </div>
       </section>
+
+      Wiki 
+
       <section class="pt-40" id="wiki-page">
          <div class="relative overflow-x-auto">
             <p>Archiver un wiki</p>

@@ -16,4 +16,4 @@ $resultat = $log->login($email, $password);
 if(!$resultat){
     header('Location: ../login.php');
 }
-header('Location: ../home.html');
+header('Location: ../index.php');
