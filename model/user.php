@@ -34,5 +34,7 @@ class user{
         $sql->bindParam(':email_user', $email_user);
         $sql->bindParam('password_user', $password_user);
         $sql->execute();
+
+        return $password_user;
     }
 }
