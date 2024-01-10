@@ -5,15 +5,16 @@ require_once '../model/user.php';
 if(@$_POST['login']){
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $password = password_hash($password, PASSWORD_DEFAULT);
-
 }
 
 $log = new user();
 
-$resultat = $log->login($email, $password);
+$mdps = $log->login($email, $password);
 
-if(!$resultat){
+$verify = password_verify($password, $mdps);
+
+
+if(!$verify){
     header('Location: ../login.php');
 }
 header('Location: ../index.php');
