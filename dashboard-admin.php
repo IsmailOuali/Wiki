@@ -1,3 +1,16 @@
+<?php
+// session_start();
+require_once 'config.php';
+require_once 'model/tag.php';
+
+
+$tags  =  new tag();
+
+$obj = $tags->showtag();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -71,7 +84,7 @@
             <form class="w-1/4 max-w-sm" action="controller/add-tag.php" method="post">
                <div class="flex items-center border-b border-teal-500 py-2">
                   <input class="appearance-none bg-transparent border-none text-white w-full mr-3 py-1 px-2" type="text" placeholder="Add tag name" aria-label="Full name" name="tag-name">
-                  <input class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" value="Add Tag" name="valider">
+                  <input class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" value="Add Tag" id="valider" name="valider">
                </div>
             </form>
          <div class="relative overflow-x-auto">
@@ -87,9 +100,15 @@
                      </tr>
                   </thead>
                <tbody>
+                     <?php
+                        foreach($obj as $row){
+
+                           ?>
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Sport
+                           <?php 
+                              echo $row->__get('name_tag');
+                              ?>
                         </th>
                         <td class="px-6 py-4">
                            <a href="http://">Modifier</a>
@@ -97,6 +116,9 @@
                            <a href="http://">Supprimer</a>
                         </td>
                      </tr>
+                        <?php
+                        }
+                        ?>
                   </tbody>
                </table>
             </div>
@@ -139,98 +161,15 @@
                            <a href="http://">Supprimer</a>
                         </td>
                      </tr>
-                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Microsoft Surface Pro
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
                   </tbody>
                </table>
             </div>
             
          </div>
       </section>
-
-      Wiki 
-
       <section class="pt-40" id="wiki-page">
          <div class="relative overflow-x-auto">
-            <p>Archiver un wiki</p>
+            <p class="text-white">Archiver les Wikis</p>
             <table class="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
