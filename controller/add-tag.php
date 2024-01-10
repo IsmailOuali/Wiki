@@ -7,6 +7,7 @@ if(@$_POST['valider']){
 
 $log = new tag();
 
-$result = $log->addtag($tagname);
+$result = $log->addtag($tagName);
+// echo $tagName;
 
-header('Location: ../dashboard-admin.php');
+header('Location: ../dashboard-admin.html');
