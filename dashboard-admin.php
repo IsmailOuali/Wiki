@@ -130,12 +130,10 @@ $obj = $tags->showtag();
 
       <section class="pt-40" id="category-page">
          <div class=" rounded-sm">
-            <form class="w-1/4 max-w-sm">
+            <form class="w-1/4 max-w-sm" action="controller/categorie.php" method="post">
                <div class="flex items-center border-b border-teal-500 py-2">
-              <input class="appearance-none bg-transparent border-none text-white w-full mr-3 py-1 px-2" type="text" placeholder="Add category name" aria-label="Full name">
-              <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
-                 Add Category
-              </button>
+              <input class="appearance-none bg-transparent border-none text-white w-full mr-3 py-1 px-2" type="text" placeholder="Add category name" aria-label="Full name" name="category-name">
+              <input class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" name="submit-categorie" value="Add Category">
             </div>
          </form>
          <div class="relative overflow-x-auto">
