@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../model/tag.php';
 
 if(@$_POST['valider']){
@@ -8,6 +9,5 @@ if(@$_POST['valider']){
 $log = new tag();
 
 $result = $log->addtag($tagName);
-// echo $tagName;
 
 header('Location: ../dashboard-admin.php');
