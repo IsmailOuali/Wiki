@@ -29,16 +29,16 @@
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
-                        <a href="home.html" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Acceuil</a>
+                        <a href="index.php" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Acceuil</a>
                     </li>
                     <li>
-                        <a href="Wiki-panel.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Gerer vos Wikis</a>
+                        <a href="Wiki-panel.php" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Gerer vos Wikis</a>
                     </li>
                     <li>
                         <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</a>
                     </li>
                     <li>
-                        <a href="#" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Deconnecter</a>
+                        <a href="login.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Deconnecter</a>
                     </li>
                 </ul>
             </div>
@@ -101,7 +101,7 @@
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-lg">Categorie</span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.html">Go to Wiki</a>
+                            <a href="wiki.php">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-lg">Categorie</span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.html">Go to Wiki</a>
+                            <a href="wiki.php">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-lg">Categorie</span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.html">Go to Wiki</a>
+                            <a href="wiki.php">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-lg">Categorie</span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.html">Go to Wiki</a>
+                            <a href="wiki.php">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-lg">Categorie</span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.html">Go to Wiki</a>
+                            <a href="wiki.php">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-lg">Categorie</span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.html">Go to Wiki</a>
+                            <a href="wiki.php">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
@@ -193,7 +193,7 @@
         <div class="w-full container mx-auto flex flex-col items-center">
             <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
                 <a href="index.php" class="uppercase px-3"> Home</a>
-                <a href="wiki-panel.html" class="uppercase px-3">Gerer mes Wikis</a>
+                <a href="wiki-panel.php" class="uppercase px-3">Gerer mes Wikis</a>
                 <a href="#" class="uppercase px-3">Terms & Conditions</a>
             </div>
             <div class="uppercase pb-6">&copy; Wiki.com</div>
