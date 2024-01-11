@@ -35,6 +35,19 @@ class user{
         $sql->bindParam('password_user', $password_user);
         $sql->execute();
 
-        return true;
+        if($sql->rowCount() == 0){
+            die('Cette utilsateur n exsiste pas');
+           
+        }else{
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+            $this->id_role = $result['id_role'];
+            if($result['id_role'] == 1){
+                header('Location: ../index.php');
+            }
+            else if ($result['id_role'] == 2){
+                header ('Location: ../dashboard-admin.php');
+            } 
+            return $result;           
+        }
     }
 }

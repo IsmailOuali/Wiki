@@ -12,8 +12,9 @@ if(@$_POST['register']){
     $nom = $_POST['name'];
     $email = $_POST['email'];
 
+
+    // $pwd = md5($_POST['password']);
     $pwd = $_POST['password'];
-    $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 }
 
 $obj = new user();
