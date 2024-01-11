@@ -35,6 +35,6 @@ class user{
         $sql->bindParam('password_user', $password_user);
         $sql->execute();
 
-        return $password_user;
+        return true;
     }
 }
