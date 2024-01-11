@@ -7,7 +7,13 @@
 
     <title>Document</title>
 </head>
-<body class="bg-gray-600">
+<style>
+    body{
+         background-image: linear-gradient(to right, #8360c3, #2ebf91);
+
+    }
+</style>
+<body class="">
     
     <section class="mt-10 flex">
         <div class="bg-gradient-to-r from-rose-100 to-teal-100 rounded-3xl border-8 mb-5 border-red-900 py-8 px-4 mx-auto max-w-2xl lg:py-16">
