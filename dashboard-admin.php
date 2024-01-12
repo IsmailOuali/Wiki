@@ -15,6 +15,10 @@ $objcat = categorie::showcategory();
 $objwiki = array();
 $objwiki = wiki::showwiki();
 
+$countWiki = wiki::CountWiki();
+
+
+
 
 ?>
 
@@ -137,7 +141,7 @@ $objwiki = wiki::showwiki();
 
       <section class="pt-40" id="category-page">
          <div class=" rounded-sm">
-            <form class="w-1/4 max-w-sm" action="controller/categorie.php" method="post">
+            <form class="w-2/4 max-w-sm" action="controller/categorie.php" method="post">
                <div class="flex items-center border-b border-teal-500 py-2">
               <input class="appearance-none bg-transparent border-none text-white w-full mr-3 py-1 px-2" type="text" placeholder="Add category name" aria-label="Full name" name="category-name">
               <input class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" name="submit-categorie" value="Add Category">
@@ -183,7 +187,7 @@ $objwiki = wiki::showwiki();
       <section class="pt-40" id="wiki-page">
          <div class="relative overflow-x-auto">
             <p class="text-white">Archiver les Wikis</p>
-            <table class="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table class="w-3/4 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                         <th scope="col" class="px-6 py-3">
@@ -192,9 +196,7 @@ $objwiki = wiki::showwiki();
                         <th scope="col" class="px-6 py-3">
                            Categorie
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                           Auteur
-                        </th>
+
                         <th scope="col" class="px-6 py-3">
                            Actions
                         </th>
@@ -209,9 +211,6 @@ $objwiki = wiki::showwiki();
                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                      <?php echo $row->__get("name_wiki") ?>
                      </th>
-                     <td class="px-6 py-4">
-                     <?php echo $row->__get("name_wiki") ?>
-                     </td>
                      <td>
                      <?php echo $row->__get("category") ?>
                      </td>
@@ -226,6 +225,12 @@ $objwiki = wiki::showwiki();
                </table>
             </div>
             
+         </div>
+      </section>
+      <section>
+         <div>
+            <h2>Wikis number</h2>
+            <p><?php $c ?></p>
          </div>
       </section>
    </main>
