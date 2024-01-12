@@ -14,12 +14,11 @@ class wiki{
     private $date;
     private user $user;
 
-    public function __construct($id_wiki,$name_wiki, $description_wiki, $category, $user){
+    public function __construct($id_wiki,$name_wiki, $description_wiki, $category){
         $this->id_wiki= $id_wiki;
         $this->name_wiki= $name_wiki;
         $this->description_wiki= $description_wiki;
         $this->category= $category;
-        $this->user = new user();
 
     }
     
@@ -31,15 +30,14 @@ class wiki{
         $this->$prop = $value;
     }
 
-    public static function addwiki($name_wiki, $description_wiki, $category, $tags, $image, $date, $user){
-        $sql = DBconnection::connection()->prepare("INSERT INTO wikis(name_wiki, description_wiki, category, tags, status, image, date, id_user) VALUES(:name_wiki, :description_wiki, :category, :tags, 1, :image, :date, :id_user)");
+    public static function addwiki($name_wiki, $description_wiki, $category, $tags, $image, $date){
+        $sql = DBconnection::connection()->prepare("INSERT INTO wikis(name_wiki, description_wiki, category, tags, status, image, date) VALUES(:name_wiki, :description_wiki, :category, :tags, 1, :image, :date)");
         $sql->bindParam(':name_wiki', $name_wiki);
         $sql->bindParam(':description_wiki', $description_wiki);
         $sql->bindParam(':category', $category);
         $sql->bindParam(':tags', $tags);
         $sql->bindParam(':image', $image);
         $sql->bindParam(':date', $date);
-        $sql->bindParam(':id_user', $user->id_user);
 
 
         $sql->execute();
@@ -73,9 +71,19 @@ class wiki{
     }
 
     public static function showwikicat($category){
-        $req = DBconnection::connection()->prepare("SELECT * FROM wikis where category = :category");
+        $req = DBconnection::connection()->prepare("SELECT * FROM wikis where category = :category and status = 1");
         $req->bindParam(':category', $category);
         $req->execute();
+
+        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $wikis = array();
+        
+        foreach ($result as $row){
+            $wik = new wiki($row['id_wiki'], $row['name_wiki'], $row['description_wiki'], $row['category']);
+            array_push($wikis, $wik);
+
+        }
+        return  $wikis;
 
 
     }

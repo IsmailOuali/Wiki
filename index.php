@@ -1,5 +1,6 @@
 <?php
 require 'model/categorie.php';
+require 'model/wiki.php';
 
 $obj = categorie::showcategory();
 
@@ -53,24 +54,19 @@ $obj = categorie::showcategory();
     <main class="w-full bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100">
 
     <section>
-    <div class = "flex flex-wrap p-10">
+
     <?php
     foreach($obj as $row)
     {
     ?>
-    <div class="relative flex w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+        <div class="w-full p-20 bg-blue-100 flex">
+            <h3 class="text-blue-300 mb-4 text-sm font-bold">
+            <?php echo $row->__get('name_category') ?>
+            </h3>
+                <a href="categories.php?name=<?php echo $row->__get('name_category') ?>" class="select-none rounded-lg bg-blue-500 py-3 px-6 text-center">
+        </div>
 
-        <div class="p-6">
-        <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-        <?php echo $row->__get('name_category') ?>
-        </h5>
-    </div>
-    <div class="p-6 pt-0">
-        <a href="categories.php" class="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
 
-    </div>
-</div>
-</div>
 <?php
     }
     ?>

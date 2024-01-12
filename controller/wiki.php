@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '../config.php';
 include '../model/wiki.php';
 
 $id_user = $_SESSION['id_user'];
@@ -36,6 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    $result = wiki::addwiki($name, $description, $category, $tags, $new_image, $date, $id_user);
+    $result = wiki::addwiki($name, $description, $category, $tags, $new_image, $date);
     header('Location: ../wiki-panel.php');
 }
