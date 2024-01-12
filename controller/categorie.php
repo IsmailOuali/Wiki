@@ -1,13 +1,15 @@
 <?php
-
+session_Start();
+require '../config.php';
 require_once '../model/categorie.php';
 
-if(@$_POST['submit-categorie']){
-    $name = $_POST['category-name'];
+if (!$_POST){
+    die("ERROR POST");
 }
 
-$obj = new categorie();
+    $name = $_POST['category-name'];
 
-$obj->addcategory($name);
+$obj = categorie::addcategory($name);
+
 
 header('Location: ../dashboard-admin.php');

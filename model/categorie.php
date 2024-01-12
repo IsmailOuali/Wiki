@@ -18,7 +18,7 @@ class categorie{
         $this->$prop = $value;
     }
 
-    public function addcategory($name_category)
+    public static function addcategory($name_category)
     {
         $sql = DBconnection::connection()->prepare("INSERT INTO categorie(name_category) VALUES(:name_category)");
         $sql->bindParam(':name_category', $name_category);
@@ -37,7 +37,16 @@ class categorie{
 
         }
         return  $cat; 
-    }  
+    } 
+
+    public static function deletecategory(){
+        
+        $req = DBconnection::connection()->prepare("DELETE FROM categorie WHERE id_category = :id_category");
+        $req->bindParam(':id_category', $this->id_category);
+        $req->execute();    
+
+    }
+
 }
 
 // $cat = categorie::showcategory();
