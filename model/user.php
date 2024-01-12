@@ -29,14 +29,15 @@ class user{
         $sql->execute();
     }
 
-    public function login($name_user, $password_user){
+    public function login($email_user, $password_user){
         $sql = DBconnection::connection()->prepare("SELECT * FROM users WHERE email_user = :email_user and password_user = :password_user");
         $sql->bindParam(':email_user', $email_user);
         $sql->bindParam('password_user', $password_user);
         $sql->execute();
 
         if($sql->rowCount() == 0){
-            die('Cette utilsateur n exsiste pas');
+            return false;
+
            
         }else{
             $result = $sql->fetch(PDO::FETCH_ASSOC);

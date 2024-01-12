@@ -3,7 +3,7 @@
 require_once '../model/categorie.php';
 
 if(@$_POST['submit-categorie']){
-    $name =$_POST['category-name'];
+    $name = $_POST['category-name'];
 }
 
 $obj = new categorie();

@@ -13,8 +13,7 @@ if(@$_POST['register']){
     $email = $_POST['email'];
 
 
-    // $pwd = md5($_POST['password']);
-    $pwd = $_POST['password'];
+    $pwd = md5($_POST['password']);
 }
 
 $obj = new user();
