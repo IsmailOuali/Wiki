@@ -1,5 +1,5 @@
 <?php
-require_once './config.php';
+// require_once './config.php';
 
 class categorie{
     private $id_category;
@@ -46,8 +46,19 @@ class categorie{
         $req->execute();    
 
     }
+    public static function modifycategory($id_category, $name_category) {
+        try {
+            $req = DBconnection::connection()->prepare("UPDATE categorie SET name_category = :name_category WHERE id_category = :id_category");
+            $req->bindParam(':name_category', $name_category);
+            $req->bindParam(':id_category', $id_category);
+            $req->execute();
 
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }
+
 
 // $cat = categorie::showcategory();
 

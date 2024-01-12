@@ -166,7 +166,7 @@ $objwiki = wiki::showwiki();
                         <?php echo $row->__get("name_category") ?>
                      </th>
                      <td class="px-6 py-4">
-                        <a href="http://">Modifier</a>
+                        <a href="modifyCategory.php?id=<?php echo $row->__get('id_category') ?>">Modifier</a>
                         ||
                         <a href="controller/deleteCategorie.php?id=<?php echo $row->__get("id_category") ?>">Supprimer</a>
                      </td>
