@@ -1,6 +1,6 @@
 <?php
 
-// require '../config.php';
+require 'config.php';
 
 
 class wiki{
@@ -43,7 +43,7 @@ class wiki{
     }
 
     public static function showwiki(){
-        $sql = DBconnection::connection()->query("SELECT * FROM wikis");
+        $sql = DBconnection::connection()->query("SELECT * FROM wikis where status = 1");
     
             $result = $sql->fetchAll(PDO::FETCH_ASSOC);
             $wikis = array();
@@ -60,6 +60,13 @@ class wiki{
         $req = DBconnection::connection()->prepare("DELETE FROM wikis WHERE id_wiki = :id_wiki");
         $req->bindParam(':id_wiki', $id_wiki);
         $req->execute();    
+
+    }
+
+    public static function archivewiki($id_wiki){
+        $req = DBconnection::connection()->prepare("UPDATE wikis set status = 0 WHERE id_wiki = :id_wiki");
+        $req->bindParam(':id_wiki', $id_wiki);
+        $req->execute();
 
     }
 }

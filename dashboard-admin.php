@@ -2,6 +2,7 @@
 session_start();
 require 'config.php';
 require 'model/categorie.php';
+require 'model/wiki.php';
 require 'model/tag.php';
 
 
@@ -10,6 +11,9 @@ $obj = tag::showtag();
 
 $objcat = array();
 $objcat = categorie::showcategory();
+
+$objwiki = array();
+$objwiki = wiki::showwiki();
 
 
 ?>
@@ -197,48 +201,27 @@ $objcat = categorie::showcategory();
                      </tr>
                   </thead>
                <tbody>
+               <?php 
+                     foreach($objwiki as $row){
+
+                   ?>
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Sport
+                     <?php echo $row->__get("name_wiki") ?>
                      </th>
                      <td class="px-6 py-4">
-                        footbal
+                     <?php echo $row->__get("name_wiki") ?>
                      </td>
                      <td>
-                        Ismail
+                     <?php echo $row->__get("category") ?>
                      </td>
                      <td>
-                        <a href="#">Archiver ce wiki</a>
+                        <a href="controller/archive.php?id=<?php echo $row->__get('id_wiki') ?>">Archiver ce wiki</a>
                      </td>
                   </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Sport
-                     </th>
-                     <td class="px-6 py-4">
-                        footbal
-                     </td>
-                     <td>
-                        Ismail
-                     </td>
-                     <td>
-                        <a href="#">Archiver ce wiki</a>
-                     </td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Sport
-                     </th>
-                     <td class="px-6 py-4">
-                        footbal
-                     </td>
-                     <td>
-                        Ismail
-                     </td>
-                     <td>
-                        <a href="#">Archiver ce wiki</a>
-                     </td>
-                  </tr>
+                  <?php
+                     }
+                  ?>
                   </tbody>
                </table>
             </div>

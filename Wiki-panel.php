@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+// require 'config.php';
 include 'model/tag.php';
 require 'model/categorie.php';
 require 'model/wiki.php';
@@ -56,8 +56,8 @@ $objwiki = wiki::showwiki();
                                     
                         ?>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" name="tag" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label name="tag" for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row->__get('name_tag') ?></label>
+                            <input id="inline-checkbox" type="checkbox" name="tag[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label name="tag[]" for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row->__get('name_tag') ?></label>
                         </div>
                         <?php
                             }
@@ -94,7 +94,7 @@ $objwiki = wiki::showwiki();
                                     <th scope="col" class="px-4 py-4">Wiki name</th>
                                     <th scope="col" class="px-4 py-3">Category</th>
                                     <th scope="col" class="px-4 py-3">Description</th>
-                                    <th scope="col" class="px-4 py-3">Actions</th>
+                                    <th scope="col" class="px-4 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,7 +104,6 @@ $objwiki = wiki::showwiki();
                                         ?>
                                 <tr class="border-b dark:border-gray-700">
                                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><?php echo $row->__get("name_wiki") ?></th>
-                                    <td class="px-4 py-3"></td>
                                     <td class="px-4 py-3"><?php echo $row->__get('category') ?></td>
                                     <td class="px-4 py-3 max-w-[12rem] truncate"><?php echo $row->__get("description_wiki") ?></td>
                                     <td class="px-4 py-3 flex justify-end">
