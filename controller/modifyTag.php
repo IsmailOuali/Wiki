@@ -2,10 +2,12 @@
 require '../config.php';
 require '../model/tag.php';
 
+$idTag = $_GET['id'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tagId = $_POST['tagId'];
-    $modifiedTagName = $_POST['modifiedTagName'];
+    
+    $modifiedTagName = $_POST['tag-name'];
 
-    $obj = tag::modifyTag($tagId, $modifiedTagName);
-
+    $obj = tag::modifyTag($idTag, $modifiedTagName);
+    header('Location: ../dashboard-admin.php');
 }

@@ -48,15 +48,13 @@ class tag{
 
     }
 
-    public static function modifyTag($id_tagtagId, $name_tag) {
+    public static function modifyTag($id_tag, $name_tag) {
         try {
             $req = DBconnection::connection()->prepare("UPDATE tags SET name_tag = :name_tag WHERE id_tag = :id_tag");
             $req->bindParam(':name_tag', $name_tag);
             $req->bindParam(':id_tag', $id_tag);
             $req->execute();
 
-
-            header('Location:   ../dashboard-admin.php');
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

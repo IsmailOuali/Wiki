@@ -7,6 +7,8 @@ require 'model/tag.php';
 $obj = array();
 $obj = tag::showtag();
 
+$_POST['idTag'] = $_GET['id'];
+
 
 
 
@@ -82,10 +84,10 @@ $obj = tag::showtag();
 
       <section id="tags-page">
          <div class=" rounded-sm">
-            <form class="w-1/4 max-w-sm" action="controller/modifyTag.php" method="post">
+            <form class="w-1/4 max-w-sm" action="controller/modifyTag.php?id=<?php echo $_POST['idTag'] ?>" method="post">
                <div class="flex items-center border-b border-teal-500 py-2">
                   <input class="appearance-none bg-transparent border-none text-white w-full mr-3 py-1 px-2" type="text" placeholder="Modify tag name" aria-label="Full name" name="tag-name">
-                  <input class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" value="Add Tag" id="valider" name="valider">
+                  <input class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit" value="Modify Tag" id="valider" name="valider">
                </div>
             </form>
             </div>
