@@ -1,13 +1,12 @@
 <?php
-// session_start();
-require_once 'config.php';
-require_once 'model/categorie.php';
-require_once 'model/tag.php';
+session_start();
+require 'config.php';
+require 'model/categorie.php';
+require 'model/tag.php';
 
 
-$tags  =  new tag();
-
-$obj = $tags->showtag();
+$obj = array();
+$obj = tag::showtag();
 
 
 $objcat = categorie::showcategory();
@@ -111,7 +110,7 @@ $objcat = categorie::showcategory();
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                            <?php
-                              echo $row->__get('name_tag');
+                              echo $row->__get("name_tag");
                               ?>
                         </th>
                         <td class="px-6 py-4">
