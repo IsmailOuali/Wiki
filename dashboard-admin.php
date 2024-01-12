@@ -116,7 +116,7 @@ $objcat = categorie::showcategory();
                         <td class="px-6 py-4">
                            <a href="http://">Modifier</a>
                            ||
-                           <a href="http://">Supprimer</a>
+                           <a href="controller/deleteTag.php?id=<?php echo $row->__get("id_tag") ?>">Supprimer</a>
                         </td>
                      </tr>
                         <?php
@@ -164,7 +164,7 @@ $objcat = categorie::showcategory();
                      <td class="px-6 py-4">
                         <a href="http://">Modifier</a>
                         ||
-                        <a href="controller/categorie.php?id=<?php echo $row->__get("id_category") ?>">Supprimer</a>
+                        <a href="controller/deleteCategorie.php?id=<?php echo $row->__get("id_category") ?>">Supprimer</a>
                      </td>
                   </tr>
                   <?php

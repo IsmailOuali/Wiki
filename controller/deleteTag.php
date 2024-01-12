@@ -1,10 +1,10 @@
 <?php
 
 include '../config.php';
-include '../model/categorie.php';
+include '../model/tag.php';
 
 $r = $_GET['id'];
 
-$obj = categorie::deletecategory($r);
+$obj = tag::deletetag($r);
 
 header('Location: ../dashboard-admin.php');

@@ -39,6 +39,14 @@ class tag{
         }
         return  $tag;
     }
+
+    public static function deletetag($id_tag){
+        
+        $req = DBconnection::connection()->prepare("DELETE FROM tags WHERE id_tag = :id_tag");
+        $req->bindParam(':id_tag', $id_tag);
+        $req->execute();    
+
+    }
 }
 
 // $obj  = new tag();

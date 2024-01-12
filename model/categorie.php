@@ -39,10 +39,10 @@ class categorie{
         return  $cat; 
     } 
 
-    public static function deletecategory(){
+    public static function deletecategory($id_category){
         
         $req = DBconnection::connection()->prepare("DELETE FROM categorie WHERE id_category = :id_category");
-        $req->bindParam(':id_category', $this->id_category);
+        $req->bindParam(':id_category', $id_category);
         $req->execute();    
 
     }
