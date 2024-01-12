@@ -51,29 +51,26 @@ $obj = wiki::showwikicat($name_cat);
     <section class="w-full ">
         <?php
         foreach($obj as $row){
-
+            
             ?>
-    <div class="flex flex-col justify-center items-center bg-gray-100 min-h-screen">
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg w-full">
-            <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606" alt="Mountain" class="w-full h-64 object-cover">
-            <div class="p-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2"><?php echo $row->__get('name_wiki') ?></h2>
-                <p class="text-gray-700 leading-tight mb-4">
-                <?php echo $row->__get('description_wiki') ?>
-                </p>
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar" class="w-8 h-8 rounded-full mr-2 object-cover">
-                        <span class="text-gray-800 font-semibold">John Doe</span>
+            <div class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
+                <div class="relative">
+                    <img class="w-full" src="wiki-logo.jpg" alt="Product Image"> 
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-medium mb-2"><?php echo $row->__get('name_wiki') ?></h3>
+                    <p class="text-gray-600 text-sm mb-4"><?php echo $row->__get('description_wiki') ?></p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-lg"><?php echo $row->__get('category') ?></span>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <a href="wiki.php?id=<?php echo $row->__get('id_wiki') ?>">Go to Wiki</a>
+                        </button>
                     </div>
-                    <span class="text-gray-600">2 hours ago</span>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php
-        }
-        ?>
+                <?php
+            }
+            ?>
 </section>
 
 </body>

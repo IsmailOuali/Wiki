@@ -118,7 +118,7 @@ $objwiki = wiki::showwiki();
                               ?>
                         </th>
                         <td class="px-6 py-4">
-                           <input type="text" name="modifiedTagName" value="">
+                           <a href="modifyTag.php?id=<?php echo $row->__get("id_tag") ?>" name="modifiedTagName">Modifier</a>
                            ||
                            <a href="controller/deleteTag.php?id=<?php echo $row->__get("id_tag") ?>">Supprimer</a>
                         </td>
