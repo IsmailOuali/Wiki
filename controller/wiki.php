@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $category = isset($_POST['category']) ? $_POST['category'] : '';
 
     if (empty($name) || empty($description) || empty($category)) {
-        // Handle form validation error
         echo "Please fill out all required fields.";
         exit;
     }
@@ -26,18 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $img_ex = pathinfo($image, PATHINFO_EXTENSION);
         $img_ex_lc = strtolower($img_ex);
 
-        // Validate file type and size here
 
         $new_image = uniqid("IMG-", true) . '.' . $img_ex_lc;
         $img_upload_path = __DIR__ . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $new_image;
         move_uploaded_file($tmp_name, $img_upload_path);
     } else {
-        // Handle file upload error
         echo "File upload failed. Please try again.";
         exit;
     }
 
-    // Assume wiki::addwiki() is a static method
     $result = wiki::addwiki($name, $description, $category, $tags, $new_image, $date);
-    // Handle the result from the addwiki method as needed
+    header('Location: ../wiki-panel.php');
 }

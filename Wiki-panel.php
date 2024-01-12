@@ -2,12 +2,16 @@
 require 'config.php';
 include 'model/tag.php';
 require 'model/categorie.php';
+require 'model/wiki.php';
 
 $obj = array();
 $obj = tag::showtag();
 
 $objcat = array();
 $objcat = categorie::showcategory();
+
+$objwiki = array();
+$objwiki = wiki::showwiki();
 
 ?>
 <!DOCTYPE html>
@@ -89,34 +93,29 @@ $objcat = categorie::showcategory();
                                 <tr>
                                     <th scope="col" class="px-4 py-4">Wiki name</th>
                                     <th scope="col" class="px-4 py-3">Category</th>
-                                    <th scope="col" class="px-4 py-3">Tags</th>
                                     <th scope="col" class="px-4 py-3">Description</th>
                                     <th scope="col" class="px-4 py-3">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                    foreach($objwiki as $row){
+
+                                        ?>
                                 <tr class="border-b dark:border-gray-700">
-                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple iMac 27&#34;</th>
-                                    <td class="px-4 py-3">PC</td>
-                                    <td class="px-4 py-3">Apple</td>
-                                    <td class="px-4 py-3 max-w-[12rem] truncate">What is a product description? A product description describes a product.</td>
+                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><?php echo $row->__get("name_wiki") ?></th>
+                                    <td class="px-4 py-3"></td>
+                                    <td class="px-4 py-3"><?php echo $row->__get('category') ?></td>
+                                    <td class="px-4 py-3 max-w-[12rem] truncate"><?php echo $row->__get("description_wiki") ?></td>
                                     <td class="px-4 py-3 flex justify-end">
                                         <a class="text-black" href="">Delete </a>
-                                         ||
+                                        ||
                                         <a class="text-black" href="">Modify</a>
                                     </td>
                                 </tr>
-                                <tr class="border-b dark:border-gray-700">
-                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple iMac 27&#34;</th>
-                                    <td class="px-4 py-3">PC</td>
-                                    <td class="px-4 py-3">Apple</td>
-                                    <td class="px-4 py-3 max-w-[12rem] truncate">What is a product description? A product description describes a product.</td>
-                                    <td class="px-4 py-3 flex items-center justify-end">
-                                        <a class="text-black" href="">Delete </a>
-                                         ||
-                                        <a class="text-black" href="">Modify</a>
-                                    </td>
-                                </tr>
+                            <?php
+                        }
+                        ?>
                             
                             </div>
                   

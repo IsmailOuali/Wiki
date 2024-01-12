@@ -1,8 +1,7 @@
 <?php
 
-require '../config.php';
-require 'tag.php';
-require 'categorie.php';
+// require '../config.php';
+
 
 class wiki{
     private $id_wiki;
@@ -14,7 +13,10 @@ class wiki{
     private $image;
     private $date;
 
-    public function __construct(){
+    public function __construct($name_wiki, $description_wiki, $category){
+        $this->name_wiki= $name_wiki;
+        $this->description_wiki= $description_wiki;
+        $this->category= $category;
 
     }
     
@@ -39,5 +41,17 @@ class wiki{
         $sql->execute();
     }
 
-    public 
+    public static function showwiki(){
+        $sql = DBconnection::connection()->query("SELECT * FROM wikis");
+    
+            $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+            $wikis = array();
+            
+            foreach ($result as $row){
+                $wik = new wiki($row['name_wiki'], $row['description_wiki'], $row['category']);
+                array_push($wikis, $wik);
+    
+            }
+            return  $wikis;
+    }
 }
