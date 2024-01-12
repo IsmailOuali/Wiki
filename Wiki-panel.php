@@ -30,7 +30,7 @@ $objcat = categorie::showcategory();
     <section class="mt-10 flex">
         <div class="bg-gradient-to-r from-rose-100 to-teal-100 rounded-3xl border-8 mb-5 border-red-900 py-8 px-4 mx-auto max-w-2xl lg:py-16">
             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new Wiki</h2>
-                <form method="post" action="controller/wiki.php">
+                <form method="post" action="controller/wiki.php" enctype="multipart/form-data">
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div class="sm:col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wiki Name</label>
@@ -38,7 +38,7 @@ $objcat = categorie::showcategory();
                     </div>
                     <div class="sm:col-span-2">
                     <label for="file-input" class="sr-only">Choose file</label>
-                        <input type="file" name="file-name" id="file-input" class="bg-gray-100 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
+                        <input type="file" name="file" id="file-input" class="bg-gray-100 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
                             file:bg-gray-50 file:border-0
                             file:bg-gray-100 file:me-4
                             file:py-3 file:px-4
@@ -52,20 +52,20 @@ $objcat = categorie::showcategory();
                                     
                         ?>
                         <div class="flex items-center me-4">
-                            <input id="inline-checkbox" type="checkbox" value="tag<?php echo $row->__get('id_tag') ?>" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row->__get('name_tag') ?></label>
+                            <input id="inline-checkbox" type="checkbox" name="tag" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label name="tag" for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row->__get('name_tag') ?></label>
                         </div>
                         <?php
                             }
                         ?>
                     <div>
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                        <select id="category" class="py-3 px-4 pe-9 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600">
+                        <select name="category" id="category" class="py-3 px-4 pe-9 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600">
                             <?php
                             foreach($objcat as $row){
 
                                 ?>                                   
-                            <option name="category<?php echo $row->__get('id_category')?>"><?php echo $row->__get("name_category") ?></option>
+                            <option><?php echo $row->__get("name_category") ?></option>
                         <?php
                             }
                         ?>
