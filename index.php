@@ -3,6 +3,7 @@ require 'model/categorie.php';
 require 'model/wiki.php';
 
 $obj = categorie::showcategory();
+$objwiki = wiki::showwiki();
 
 ?>
 <!DOCTYPE html>
@@ -59,12 +60,22 @@ $obj = categorie::showcategory();
     foreach($obj as $row)
     {
     ?>
-        <div class="w-full p-20 bg-blue-100 flex">
-            <h3 class="text-blue-300 mb-4 text-sm font-bold">
-            <?php echo $row->__get('name_category') ?>
-            </h3>
-                <a href="categories.php?name=<?php echo $row->__get('name_category') ?>" class="select-none rounded-lg bg-blue-500 py-3 px-6 text-center">
-        </div>
+
+        
+
+    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><?php echo $row->__get('name_category') ?></h5>
+        </a>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        <a href="categories.php?name=<?php echo $row->__get('name_category') ?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Read more
+            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
+
 
 
 <?php
@@ -115,104 +126,33 @@ $obj = categorie::showcategory();
             </div>
         </section>
         <section class="m-5 flex flex-wrap">
+            <?php
+            foreach($objwiki as $row)
+            {
+            ?>
+                
+
+
+
             
             <div class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
                 <div class="relative">
                     <img class="w-full" src="wiki-logo.jpg" alt="Product Image"> 
                 </div>
                 <div class="p-4">
-                    <h3 class="text-lg font-medium mb-2">Wiki Title</h3>
-                    <p class="text-gray-600 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante
-                        vel eros fermentum faucibus sit amet euismod lorem.</p>
+                    <h3 class="text-lg font-medium mb-2"><?php echo $row->__get('name_wiki') ?></h3>
+                    <p class="text-gray-600 text-sm mb-4"><?php echo $row->__get('description_wiki') ?></p>
                     <div class="flex items-center justify-between">
-                        <span class="font-bold text-lg">Categorie</span>
+                        <span class="font-bold text-lg"><?php echo $row->__get('category') ?></span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.php">Go to Wiki</a>
+                            <a href="wiki.php?id=<?php echo $row->__get('id_wiki') ?>">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
-                <div class="relative">
-                    <img class="w-full" src="wiki-logo.jpg" alt="Product Image"> 
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium mb-2">Wiki Title</h3>
-                    <p class="text-gray-600 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante
-                        vel eros fermentum faucibus sit amet euismod lorem.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-lg">Categorie</span>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.php">Go to Wiki</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
-                <div class="relative">
-                    <img class="w-full" src="wiki-logo.jpg" alt="Product Image"> 
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium mb-2">Wiki Title</h3>
-                    <p class="text-gray-600 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante
-                        vel eros fermentum faucibus sit amet euismod lorem.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-lg">Categorie</span>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.php">Go to Wiki</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
-                <div class="relative">
-                    <img class="w-full" src="wiki-logo.jpg" alt="Product Image"> 
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium mb-2">Wiki Title</h3>
-                    <p class="text-gray-600 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante
-                        vel eros fermentum faucibus sit amet euismod lorem.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-lg">Categorie</span>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.php">Go to Wiki</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
-                <div class="relative">
-                    <img class="w-full" src="wiki-logo.jpg" alt="Product Image"> 
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium mb-2">Wiki Title</h3>
-                    <p class="text-gray-600 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante
-                        vel eros fermentum faucibus sit amet euismod lorem.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-lg">Categorie</span>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.php">Go to Wiki</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
-                <div class="relative">
-                    <img class="w-full" src="wiki-logo.jpg" alt="Product Image"> 
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium mb-2">Wiki Title</h3>
-                    <p class="text-gray-600 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante
-                        vel eros fermentum faucibus sit amet euismod lorem.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-lg">Categorie</span>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.php">Go to Wiki</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
+                <?php
+            }
+                ?>
         </section>
     </main>
     <footer class="w-full border-t bg-white pb-12">

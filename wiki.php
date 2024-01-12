@@ -1,3 +1,13 @@
+<?php
+
+require 'config.php';
+require 'model/wiki.php';
+
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+$obj = wiki::showwikiid($id);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

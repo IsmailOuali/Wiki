@@ -87,4 +87,22 @@ class wiki{
 
 
     }
+
+    public static function showwikiid($id_wiki){
+        $req = DBconnection::connection()->prepare("SELECT * FROM wikis where id_wiki = :id_wiki and status = 1");
+        $req->bindParam(':id_wiki', $id_wiki);
+        $req->execute();
+
+        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $wikis = array();
+        
+        foreach ($result as $row){
+            $wik = new wiki($row['id_wiki'], $row['name_wiki'], $row['description_wiki'], $row['category']);
+            array_push($wikis, $wik);
+
+        }
+        return  $wikis;
+
+
+    }
 }
