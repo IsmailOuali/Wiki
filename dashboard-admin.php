@@ -118,7 +118,7 @@ $objwiki = wiki::showwiki();
                               ?>
                         </th>
                         <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
+                           <input type="text" name="modifiedTagName" value="">
                            ||
                            <a href="controller/deleteTag.php?id=<?php echo $row->__get("id_tag") ?>">Supprimer</a>
                         </td>
@@ -216,7 +216,7 @@ $objwiki = wiki::showwiki();
                      <?php echo $row->__get("category") ?>
                      </td>
                      <td>
-                        <a href="controller/archive.php?id=<?php echo $row->__get('id_wiki') ?>">Archiver ce wiki</a>
+                        <a href="controller/archive.php?id=<?php echo $row->__get('id') ?>">Archiver ce wiki</a>
                      </td>
                   </tr>
                   <?php

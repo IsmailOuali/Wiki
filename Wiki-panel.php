@@ -3,6 +3,7 @@ require 'config.php';
 include 'model/tag.php';
 require 'model/categorie.php';
 require 'model/wiki.php';
+require 'model/user.php';
 
 $obj = array();
 $obj = tag::showtag();

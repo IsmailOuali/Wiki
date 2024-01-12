@@ -1,6 +1,8 @@
 <?php
-
+session_start();
 include '../model/wiki.php';
+
+$id_user = $_SESSION['id_user'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = isset($_POST['wiki-name']) ? $_POST['wiki-name'] : '';
@@ -34,6 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    $result = wiki::addwiki($name, $description, $category, $tags, $new_image, $date);
+    $result = wiki::addwiki($name, $description, $category, $tags, $new_image, $date, $id_user);
     header('Location: ../wiki-panel.php');
 }

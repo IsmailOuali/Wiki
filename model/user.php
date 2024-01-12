@@ -1,6 +1,6 @@
 <?php
 
-require_once '../config.php';
+    // require_once '../config.php';
 
 class user{
     private $id_user;
@@ -48,7 +48,7 @@ class user{
             else if ($result['id_role'] == 2){
                 header ('Location: ../dashboard-admin.php');
             } 
-            return $result;           
+            return $result['id_user'];           
         }
     }
 }
