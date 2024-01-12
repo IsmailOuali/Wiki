@@ -8,7 +8,7 @@ require 'model/tag.php';
 $obj = array();
 $obj = tag::showtag();
 
-
+$objcat = array();
 $objcat = categorie::showcategory();
 
 
@@ -152,17 +152,25 @@ $objcat = categorie::showcategory();
                      </tr>
                   </thead>
                <tbody>
+                  <?php
+                     foreach ($objcat as $row){
+
+                        
+                        ?>
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Sport
+                        <?php echo $row->__get("name_category") ?>
                      </th>
                      <td class="px-6 py-4">
-                           <a href="http://">Modifier</a>
-                           ||
-                           <a href="http://">Supprimer</a>
-                        </td>
-                     </tr>
-                  </tbody>
+                        <a href="http://">Modifier</a>
+                        ||
+                        <a href="http://">Supprimer</a>
+                     </td>
+                  </tr>
+                  <?php
+               }
+                  ?>
+               </tbody>
                </table>
             </div>
             

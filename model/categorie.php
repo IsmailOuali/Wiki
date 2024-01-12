@@ -5,8 +5,9 @@ class categorie{
     private $id_category;
     private $name_category;
 
-    public function __construct(){
-
+    public function __construct($id_category, $name_category){
+        $this->id_category = $id_category;
+        $this->name_category = $name_category;
     }
 
     public function __get($prop){
@@ -31,8 +32,8 @@ class categorie{
         $cat = array();
         
         foreach ($result as $row){
-            $quest = new categorie($row['id_category'], $row['name_category']);
-            array_push($cat, $quest);
+            $catobj = new categorie($row['id_category'], $row['name_category']);
+            array_push($cat, $catobj);
 
         }
         return  $cat; 
