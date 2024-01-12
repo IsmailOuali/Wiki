@@ -108,7 +108,7 @@ $objwiki = wiki::showwiki();
                                     <td class="px-4 py-3"><?php echo $row->__get('category') ?></td>
                                     <td class="px-4 py-3 max-w-[12rem] truncate"><?php echo $row->__get("description_wiki") ?></td>
                                     <td class="px-4 py-3 flex justify-end">
-                                        <a class="text-black" href="">Delete </a>
+                                        <a class="text-black" href="controller/deletewiki.php?id=<?php echo $row->__get("id_wiki") ?>">Delete </a>
                                         ||
                                         <a class="text-black" href="">Modify</a>
                                     </td>

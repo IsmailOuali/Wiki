@@ -13,7 +13,8 @@ class wiki{
     private $image;
     private $date;
 
-    public function __construct($name_wiki, $description_wiki, $category){
+    public function __construct($id_wiki,$name_wiki, $description_wiki, $category){
+        $this->id_wiki= $id_wiki;
         $this->name_wiki= $name_wiki;
         $this->description_wiki= $description_wiki;
         $this->category= $category;
@@ -48,10 +49,17 @@ class wiki{
             $wikis = array();
             
             foreach ($result as $row){
-                $wik = new wiki($row['name_wiki'], $row['description_wiki'], $row['category']);
+                $wik = new wiki($row['id_wiki'], $row['name_wiki'], $row['description_wiki'], $row['category']);
                 array_push($wikis, $wik);
     
             }
             return  $wikis;
+    }
+    public static function deletewiki($id_wiki){
+        
+        $req = DBconnection::connection()->prepare("DELETE FROM wikis WHERE id_wiki = :id_wiki");
+        $req->bindParam(':id_wiki', $id_wiki);
+        $req->execute();    
+
     }
 }
