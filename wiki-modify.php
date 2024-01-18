@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require 'config.php';
 include 'model/tag.php';
 require 'model/categorie.php';
@@ -10,6 +9,8 @@ require 'model/wiki.php';
 if(!$_SESSION['id_user']){
     header('Location: login.php');
 }
+$id_wiki = $_GET['id'];
+$_POST['wiki-id'] = $id_wiki;
 
 $obj = array();
 $obj = tag::showtag();
@@ -19,25 +20,18 @@ $objcat = categorie::showcategory();
 
 $id_user = $_SESSION['id_user'];
 $objwiki = array();
-$objwiki = wiki::showwikiuser($id_user);
-
+$objwiki = wiki::showwikiid($id_wiki);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>Document</title>
-</head>
-<style>
-    body{
-         background-image: linear-gradient(to right, #8360c3, #2ebf91);
-
-    }
-</style>
-<body class="">
+        <title>Modify wiki</title>
+    </head>
+    <body class="">
 
     <nav class="bg-gradient-to-r from-gray-700 via-gray-900 to-black border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -77,15 +71,13 @@ $objwiki = wiki::showwikiuser($id_user);
             </div>
         </div>
     </nav>
-    
-    <section class="mt-10 flex">
-        <div class="bg-gradient-to-r from-rose-100 to-teal-100 rounded-3xl border-8 mb-5 border-red-900 py-8 px-4 mx-auto max-w-2xl lg:py-16">
-            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new Wiki</h2>
-                <form method="post" action="controller/wiki.php" enctype="multipart/form-data">
+
+    <section class="">
+    <form method="post" action="controller/modifywiki.php?id-wiki=<?php echo $id_wiki ?>" enctype="multipart/form-data">
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div class="sm:col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wiki Name</label>
-                        <input type="text" name="wiki-name" id="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                        <input type="text" value="<?php echo $objwiki[0]->__get('name_wiki') ?>" name="wiki-name" id="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
                     </div>
                     <div class="sm:col-span-2">
                     <label for="file-input" class="sr-only">Choose file</label>
@@ -123,98 +115,15 @@ $objwiki = wiki::showwikiuser($id_user);
                         </select>
                     <div class="sm:col-span-2">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                        <textarea id="description" name="description-wiki" class=" bg-gray-100 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" rows="3"></textarea>
+                        <textarea id="description" value="" name="description-wiki" class=" bg-gray-100 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" rows="3"><?php echo $objwiki[0]->__get('description_wiki') ?></textarea>
                     </div>
                 </div>
                 <div class="h-3/5 w-full mt-4">
                     <input value="Add Wiki" name="submit-wiki" type="submit" class="w-1/3 h-1/3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-blue-600 text-blue-600 hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                 </div>
             </form>
-        </div>
+
     </section>
-    <section class="p-3 sm:p-5 antialiased ">
-        <div class="bg-gradient-to-r from-rose-100 to-teal-100 rounded-3xl mx-auto max-w-screen-xl px-4 lg:px-12">
-                <div class="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-4 py-4">Wiki name</th>
-                                    <th scope="col" class="px-4 py-3">Category</th>
-                                    <th scope="col" class="px-4 py-3">Description</th>
-                                    <th scope="col" class="px-4 py-3"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    foreach($objwiki as $row){
-
-                                        ?>
-                                <tr class="border-b dark:border-gray-700">
-                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><?php echo $row->__get("name_wiki") ?></th>
-                                    <td class="px-4 py-3"><?php echo $row->__get('category') ?></td>
-                                    <td class="px-4 py-3 max-w-[12rem] truncate"><?php echo $row->__get("description_wiki") ?></td>
-                                    <td class="px-4 py-3 flex justify-end">
-                                        <a class="text-black" href="controller/deletewiki.php?id=<?php echo $row->__get("id_wiki") ?>">Delete </a>
-                                        ||
-                                        <a class="text-black" href="wiki-modify.php?id=<?php echo $row->__get("id_wiki") ?>">Modify</a>
-                                    </td>
-                                </tr>
-                            <?php
-                        }
-                        ?>
-                            
-                            </div>
-                  
-        </section>
-
-</body>
-<script>
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {
-            colors: {
-                primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
-            }
-            },
-            fontFamily: {
-            'body': [
-            'Inter', 
-            'ui-sans-serif', 
-            'system-ui', 
-            '-apple-system', 
-            'system-ui', 
-            'Segoe UI', 
-            'Roboto', 
-            'Helvetica Neue', 
-            'Arial', 
-            'Noto Sans', 
-            'sans-serif', 
-            'Apple Color Emoji', 
-            'Segoe UI Emoji', 
-            'Segoe UI Symbol', 
-            'Noto Color Emoji'
-        ],
-            'sans': [
-            'Inter', 
-            'ui-sans-serif', 
-            'system-ui', 
-            '-apple-system', 
-            'system-ui', 
-            'Segoe UI', 
-            'Roboto', 
-            'Helvetica Neue', 
-            'Arial', 
-            'Noto Sans', 
-            'sans-serif', 
-            'Apple Color Emoji', 
-            'Segoe UI Emoji', 
-            'Segoe UI Symbol', 
-            'Noto Color Emoji'
-        ]
-            }
-        }
-        }
-</script>
+        
+    </body>
 </html>

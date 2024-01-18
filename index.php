@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config.php';
 require 'model/categorie.php';
 require 'model/wiki.php';
@@ -25,7 +26,7 @@ $objwiki = wiki::showLastWikis();
     
     <nav class="bg-gradient-to-r from-gray-700 via-gray-900 to-black border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Wiki</span>
             </a>
@@ -41,13 +42,21 @@ $objwiki = wiki::showLastWikis();
                         <a href="index.php" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Acceuil</a>
                     </li>
                     <li>
+                        <?php
+                            if(@$_SESSION['id_user']){
+
+                                ?>
                         <a href="Wiki-panel.php" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Gerer vos Wikis</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</a>
-                    </li>
-                    <li>
-                        <a href="login.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Deconnecter</a>
+                        <a href="controller/log-out.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Deconnecter</a>
+                        <?php
+                            }else{
+                                ?>  
+                                <a href="controller/log-in.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Connecter</a>
+                            <?php    
+                            }
+                            ?>
                     </li>
                 </ul>
             </div>
@@ -88,7 +97,7 @@ $objwiki = wiki::showLastWikis();
         <section class="pt-5 flex">
             <div class="p-10 w-1/2">
 
-                <form>   
+                <form method="post" action="">   
                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -96,24 +105,30 @@ $objwiki = wiki::showLastWikis();
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                             </svg>
                         </div>
-                        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gradient-to-r from-gray-700 via-gray-900 to-black focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Wikis, Categories and Tags." required>
-                        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        <input name="nameSearch" type="search" id="nameSearch" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gradient-to-r from-gray-700 via-gray-900 to-black focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Wikis, Categories and Tags." required>
+                        <input name="submitSearch" type ="submit" value="Search" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     </div>
                 </form>
+                <div id="searchResultsContainer"></div>
 
             </div>
         </section>
-        <section class="m-5 flex flex-wrap">
+        <section class="m-5 flex flex-wrap" id="result">
             <?php
-            foreach($objwiki as $row)
-            {
+            if(@$_POST['submitSearch']){
+
+                $objwiki = wiki::searchwiki($_POST['nameSearch']);
+                
+            }
+                foreach($objwiki as $row){
+                
             ?>
                 
 
 
 
             
-            <div class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
+            <div  class="m-10 bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm">
                 <div class="relative">
                     <img class="w-full" src="wiki-logo.jpg" alt="Product Image"> 
                 </div>
@@ -123,7 +138,7 @@ $objwiki = wiki::showLastWikis();
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-lg"><?php echo $row->__get('category') ?></span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.php?id=<?php echo $row->__get('id_wiki') ?>">Go to Wiki</a>
+                            <a href="wiki-info.php?id=<?php echo $row->__get('id_wiki') ?>">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
@@ -146,6 +161,12 @@ $objwiki = wiki::showLastWikis();
         </div>
     </footer>
   
-    
+    <script>
+
+
+
+
+
+    </script>
 </body>
 </html>

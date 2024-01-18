@@ -6,6 +6,7 @@ require 'model/wiki.php';
 require 'model/tag.php';
 
 
+
 $obj = array();
 $obj = tag::showtag();
 
@@ -16,9 +17,15 @@ $objwiki = array();
 $objwiki = wiki::showwiki();
 
 $countWiki = wiki::CountWiki();
+$countuser = user::CountUsers();
+$countArchivedWiki = wiki::CountArchivedWiki();
 
 
-
+$id_user = $_SESSION['id_user'];
+$usr  = user::checkadmin($id_user);
+if(!$usr){
+   header('Location: login.php');
+}
 
 ?>
 
@@ -36,6 +43,41 @@ $countWiki = wiki::CountWiki();
       }
    </style>
    <body>
+   <nav class="bg-gradient-to-r from-gray-700 via-gray-900 to-black border-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Wiki</span>
+            </a>
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="index.php" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Acceuil</a>
+                    </li>
+                    <li>
+                        <?php
+                            if(@$_SESSION['id_user']){
+
+                                ?>
+                        <a href="controller/log-out.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Deconnecter</a>
+                        <?php
+                            }else{
+                                ?>  
+                                <a href="controller/log-in.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Connecter</a>
+                            <?php    
+                            }
+                            ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+   </nav>
    
    <div>
 
@@ -47,11 +89,11 @@ $countWiki = wiki::CountWiki();
       </button>
    </div>
    
-   <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+   <aside id="default-sidebar" class="fixed top-13 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
       <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
          <ul class="space-y-2 font-medium">
             <li>
-               <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <a href="#dashboard-page" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                      <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
                      <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
@@ -88,9 +130,74 @@ $countWiki = wiki::CountWiki();
    </aside>
    <main class="mx-60 max-w-screen-2xl p-4 md:p-6 2xl:p-10">
 
-   <!-- Tags part -->
+   <section id="dashboard-page" class="w-full flex mb-10">
 
+         <!-- Tile 1 -->
+         <div class="flex items-center p-4 rounded">
+               <div class="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
+                  <svg class="w-6 h-6 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                     fill="currentColor">
+                     <path fill-rule="evenodd"
+                           d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
+                           clip-rule="evenodd" />
+                  </svg>
+               </div>
+               <div class="flex-grow flex flex-col ml-4">
+                  <div class="flex items-center justify-between">
+                     <span class="text-white">Number of wikis</span>
+                  </div>
+                  <span class="text-xl font-bold"><?php echo $countWiki[0] ?></span>
+               </div>
+         </div>
+
+         <!-- Tile 2 -->
+         <div class="flex items-center p-4 rounded">
+               <div class="flex flex-shrink-0 items-center justify-center bg-red-200 h-16 w-16 rounded">
+                  <svg class="w-6 h-6 fill-current text-red-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                     fill="currentColor">
+                     <path fill-rule="evenodd"
+                           d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
+                           clip-rule="evenodd" />
+                  </svg>
+               </div>
+               <div class="flex-grow flex flex-col ml-4">
+                  <div class="flex items-center justify-between">
+                     <span class="text-white">Number of autors</span>
+                  </div>
+                  <span class="text-xl font-bold"><?php echo $countuser[0] ?></span>
+               </div>
+         </div>
+
+         <!-- Tile 3 -->
+         <div class="flex items-center p-4 rounded">
+               <div class="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
+                  <svg class="w-6 h-6 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                     fill="currentColor">
+                     <path fill-rule="evenodd"
+                           d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
+                           clip-rule="evenodd" />
+                  </svg>
+               </div>
+               <div class="flex-grow flex flex-col ml-4">
+                  <div class="flex items-center justify-between">
+                     <span class="text-white">Archived wikis</span>
+                  </div>
+                  <span class="text-xl font-bold"><?php echo $countArchivedWiki[0] ?></span>
+               </div>
+         </div>
+
+      </div>
+      <!-- Component End  -->
+
+   </div>
+   </section>
+
+   <!-- Tags part -->
+ 
       <section id="tags-page">
+      <div class="w-1/5 mb-5 bg-gray-500">
+               <p class="text-white">Gerer les Tags</p>
+            </div>
          <div class=" rounded-sm">
             <form class="w-1/4 max-w-sm" action="controller/add-tag.php" method="post">
                <div class="flex items-center border-b border-teal-500 py-2">
@@ -140,6 +247,9 @@ $countWiki = wiki::CountWiki();
       <!-- Category Part -->
 
       <section class="pt-40" id="category-page">
+         <div class="w-1/5 mb-5 bg-gray-500">
+            <p class="text-white">Gerer  les categories</p>
+         </div>
          <div class=" rounded-sm">
             <form class="w-2/4 max-w-sm" action="controller/categorie.php" method="post">
                <div class="flex items-center border-b border-teal-500 py-2">
@@ -186,7 +296,9 @@ $countWiki = wiki::CountWiki();
       </section>
       <section class="pt-40" id="wiki-page">
          <div class="relative overflow-x-auto">
-            <p class="text-white">Archiver les Wikis</p>
+            <div class="w-1/5 mb-5 bg-gray-500">
+               <p class="text-white">Archiver les Wikis</p>
+            </div>
             <table class="w-3/4 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
@@ -215,7 +327,7 @@ $countWiki = wiki::CountWiki();
                      <?php echo $row->__get("category") ?>
                      </td>
                      <td>
-                        <a href="controller/archive.php?id=<?php echo $row->__get('id') ?>">Archiver ce wiki</a>
+                        <a href="controller/archive.php?id=<?php echo $row->__get('id_wiki') ?>">Archiver ce wiki</a>
                      </td>
                   </tr>
                   <?php
@@ -225,12 +337,6 @@ $countWiki = wiki::CountWiki();
                </table>
             </div>
             
-         </div>
-      </section>
-      <section>
-         <div>
-            <h2>Wikis number</h2>
-            <p><?php $c ?></p>
          </div>
       </section>
    </main>

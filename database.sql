@@ -9,3 +9,4 @@ CREATE TABLE wikis ( id_wiki int AUTO_INCREMENT, name_wiki varchar(255), descrip
 
 ALTER TABLE `wikis` CHANGE `date` `date` DATETIME NULL DEFAULT NULL;
 
+

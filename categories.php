@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config.php';
 require 'model/wiki.php';
 
@@ -39,16 +40,24 @@ $obj = wiki::showwikicat($name_cat);
                         <a href="Wiki-panel.php" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Gerer vos Wikis</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</a>
-                    </li>
-                    <li>
-                        <a href="login.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Deconnecter</a>
+                        <?php
+                            if(@$_SESSION['id_user']){
+
+                                ?>
+                        <a href="controller/log-out.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Deconnecter</a>
+                        <?php
+                            }else{
+                                ?>  
+                                <a href="controller/log-in.php" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Se Connecter</a>
+                            <?php    
+                            }
+                            ?>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <section class="w-full ">
+    <section class="w-full flex flex-wrap">
         <?php
         foreach($obj as $row){
             
@@ -63,7 +72,7 @@ $obj = wiki::showwikicat($name_cat);
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-lg"><?php echo $row->__get('category') ?></span>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <a href="wiki.php?id=<?php echo $row->__get('id_wiki') ?>">Go to Wiki</a>
+                            <a href="wiki-info.php?id=<?php echo $row->__get('id_wiki') ?>">Go to Wiki</a>
                         </button>
                     </div>
                 </div>
@@ -72,6 +81,18 @@ $obj = wiki::showwikicat($name_cat);
             }
             ?>
 </section>
+<footer class="w-full border-t bg-white pb-12">
+        <div class="w-full container mx-auto flex flex-col items-center">
+            <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
+                <a href="index.php" class="uppercase px-3"> Home</a>
+                <a href="wiki-panel.php" class="uppercase px-3">Gerer mes Wikis</a>
+                <a href="#" class="uppercase px-3">Terms & Conditions</a>
+            </div>
+            <div class="uppercase pb-6">&copy; Wiki.com</div>
+            <i>By Ouali Ismail</i>
+
+        </div>
+    </footer>
 
 </body>
 </html>

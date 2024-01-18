@@ -42,13 +42,38 @@ class user{
         }else{
             $result = $sql->fetch(PDO::FETCH_ASSOC);
             $this->id_role = $result['id_role'];
+            $this->id_user = $result['id_user'];
             if($result['id_role'] == 1){
                 header('Location: ../index.php');
             }
             else if ($result['id_role'] == 2){
                 header ('Location: ../dashboard-admin.php');
-            } 
-            return $result['id_user'];           
+            }
+            return $this->id_user;           
         }
+
+    }
+
+    public static function CountUsers(){
+        $req = DBconnection::connection()->query("SELECT COUNT(*) FROM users where id_role = 1");
+        $result = $req->fetch(PDO::FETCH_NUM);
+
+        return $result;
+
+    }
+
+    public static function logout() {
+        session_destroy();
+        unset($_SESSION['id_user']);
+        return true;
+    }
+
+    public static function checkadmin($id_user){
+        $sql = DBconnection::connection()->query("SELECT * from users WHERE id_role = 2");
+
+        if($sql->rowCount() == 0){
+            return false;
+        }
+        return true;
     }
 }
